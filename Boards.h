@@ -631,13 +631,12 @@
   
   #elif MCU_VARIANT == MCU_NRF52
     #if BOARD_MODEL == BOARD_TECHO
-    #define EEPROM_SIZE 296
-    #define EEPROM_OFFSET EEPROM_SIZE-EEPROM_RESERVED
-  /*    #define HAS_EEPROM false
-      #define HAS_DISPLAY false
+      #define EEPROM_SIZE 296
+      #define EEPROM_OFFSET EEPROM_SIZE-EEPROM_RESERVED
+      #define HAS_EEPROM false
+      #define HAS_DISPLAY true
       #define DISPLAY EINK_BW
-      #define HAS_BLUETOOTH false
-      #define HAS_BLE false
+      #define HAS_BLE true
       #define HAS_CONSOLE false
       #define HAS_PMU false
       #define HAS_NP false
@@ -647,7 +646,6 @@
       #define CONFIG_QUEUE_MAX_LENGTH 200
       #define BLE_MANUFACTURER "LilyGO"
       #define BLE_MODEL "T-Echo"
-      */
       #define INTERFACE_COUNT 1
       // first interface in list is the primary
       const uint8_t interfaces[INTERFACE_COUNT] = {SX126X};
@@ -675,11 +673,11 @@
           }
       };
 
-      //const int pin_disp_cs = SS;
-      //const int pin_disp_dc = WB_IO1;
-      //const int pin_disp_reset = -1;
-      //const int pin_disp_busy = WB_IO4;
-      //const int pin_disp_en = WB_IO2;
+      const int pin_disp_cs = PIN_QSPI_CS;
+      const int pin_disp_dc = PIN_QSPI_IO1;
+      const int pin_disp_reset = -1;
+      const int pin_disp_busy = PIN_QSPI_IO3;
+      const int pin_disp_en = PIN_QSPI_IO2;
 
       const int pin_led_rx = LED_BLUE;
       const int pin_led_tx = LED_RED;

@@ -75,7 +75,7 @@ void busyCallback(const void* p) {
   #define SCL_OLED 17
   #define SDA_OLED 18
   #endif
-#elif BOARD_MODEL == BOARD_RAK4631
+#elif BOARD_MODEL == BOARD_RAK4631 || BOARD_MODEL == BOARD_TECHO
   #if DISPLAY == OLED
   // todo: add support for OLED board
   #elif DISPLAY == EINK_BW
@@ -112,7 +112,7 @@ uint32_t last_screensaver = 0;
 bool screensaver_enabled = false;
 #endif
 #endif
-#if BOARD_MODEL == BOARD_RAK4631
+#if BOARD_MODEL == BOARD_RAK4631  || BOARD_MODEL == BOARD_TECHO
 #if DISPLAY == EINK_BW
 GxEPD2_BW<DISPLAY_MODEL, DISPLAY_MODEL::HEIGHT> display(DISPLAY_MODEL(pin_disp_cs, pin_disp_dc, pin_disp_reset, pin_disp_busy));
 float disp_target_fps = 0.2;
