@@ -1153,6 +1153,8 @@ uint16_t getQueueSize(uint8_t index) {
         case 11:
             return CONFIG_QUEUE_11_SIZE;
         #endif
+        default:
+            return CONFIG_QUEUE_0_SIZE;
     }
 }
 
@@ -1327,7 +1329,7 @@ bool eeprom_product_valid() {
 	#if PLATFORM == PLATFORM_ESP32
 	if (rval == PRODUCT_RNODE || rval == BOARD_RNODE_NG_20 || rval == BOARD_RNODE_NG_21 || rval == PRODUCT_HMBRW || rval == PRODUCT_TBEAM || rval == PRODUCT_T32_10 || rval == PRODUCT_T32_20 || rval == PRODUCT_T32_21 || rval == PRODUCT_H32_V2 || rval == PRODUCT_H32_V3) {
 	#elif PLATFORM == PLATFORM_NRF52
-	if (rval == PRODUCT_RAK4631 || rval == PRODUCT_HMBRW || rval == PRODUCT_FREENODE) {
+	if (rval == PRODUCT_TECHO || rval == PRODUCT_RAK4631 || rval == PRODUCT_HMBRW || rval == PRODUCT_FREENODE) {
 	#else
 	if (false) {
 	#endif

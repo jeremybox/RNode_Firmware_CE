@@ -1100,11 +1100,12 @@ void validate_status() {
         if (eeprom_checksum_valid()) {
           eeprom_ok = true;
           if (modems_installed) {
-              if (device_init()) {
+              // Disable for now as Device.h functionality likely won't work on t-echo
+              //if (device_init()) {
                 hw_ready = true;
-              } else {
-                hw_ready = false;
-              }
+              //} else {
+              //  hw_ready = false;
+              //}
           } else {
             hw_ready = false;
             Serial.write("No valid radio module found\r\n");
