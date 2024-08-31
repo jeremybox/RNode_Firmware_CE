@@ -2531,6 +2531,7 @@ void sx128x::disableCrc()
 byte sx128x::random()
 {
     // todo: implement
+    return 4;//because: https://xkcd.com/221/
 }
 
 void sx128x::setSPIFrequency(uint32_t frequency)

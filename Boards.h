@@ -634,13 +634,12 @@
       #define EEPROM_SIZE 296
       #define EEPROM_OFFSET EEPROM_SIZE-EEPROM_RESERVED
       #define HAS_EEPROM false
-      #define HAS_DISPLAY true
+      //#define HAS_DISPLAY true
       #define DISPLAY EINK_BW
-      #define HAS_BLE true
-      #define HAS_CONSOLE false
-      #define HAS_PMU false
-      #define HAS_NP false
-      #define HAS_SD false
+      //#define HAS_BLE true
+      //#define HAS_CONSOLE false
+      //#define HAS_PMU false
+      //#define HAS_SD false
       #define CONFIG_UART_BUFFER_SIZE 40000
       #define CONFIG_QUEUE_0_SIZE 6144
       #define CONFIG_QUEUE_MAX_LENGTH 200
