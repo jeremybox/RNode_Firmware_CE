@@ -631,14 +631,17 @@
   
   #elif MCU_VARIANT == MCU_NRF52
     #if BOARD_MODEL == BOARD_TECHO
+      #define GPS_BAUD_RATE 9600
+      #define PIN_GPS_TX 41
+      #define PIN_GPS_RX 40
       #define EEPROM_SIZE 296
       #define EEPROM_OFFSET EEPROM_SIZE-EEPROM_RESERVED
-      #define HAS_EEPROM false
+      //#define HAS_EEPROM true
       #define HAS_DISPLAY true
       #define DISPLAY EINK_BW
       #define HAS_BLE true
-      //#define HAS_CONSOLE false
-      //#define HAS_PMU false
+      #define HAS_CONSOLE false
+      //#define HAS_PMU true
       //#define HAS_SD false
       #define CONFIG_UART_BUFFER_SIZE 40000
       #define CONFIG_QUEUE_0_SIZE 6144
@@ -646,12 +649,14 @@
       #define BLE_MANUFACTURER "LilyGO"
       #define BLE_MODEL "T-Echo"
       #define INTERFACE_COUNT 1
+      #define I2C_SDA 26
+      #define I2C_SCL 27
       // first interface in list is the primary
       const uint8_t interfaces[INTERFACE_COUNT] = {SX126X};
       const bool interface_cfg[INTERFACE_COUNT][3] = { 
                   // SX1262
           {
-              false, // DEFAULT_SPI
+              true, // DEFAULT_SPI
               true, // HAS_TCXO
               true  // DIO2_AS_RF_SWITCH
           }
@@ -659,13 +664,13 @@
       const int8_t interface_pins[INTERFACE_COUNT][10] = { 
                   // SX1262
           {
-              44, // pin_ss
-              47, // pin_sclk
-              45, // pin_mosi
-              46, // pin_miso
-              14, // pin_busy
-              13, // pin_dio
-              15, // pin_reset
+              -1, // pin_ss
+              -1, // pin_sclk
+              44, // pin_mosi
+              45, // pin_miso
+              17, // pin_busy
+              20, // pin_dio
+              25, // pin_reset
               -1, // pin_txen
               -1, // pin_rxen
               -1  // pin_tcxo_enable
@@ -682,7 +687,7 @@
       const int pin_led_tx = LED_RED;
     #elif BOARD_MODEL == BOARD_RAK4631 || BOARD_MODEL == BOARD_FREENODE
       #define HAS_EEPROM false
-      #define HAS_DISPLAY true
+      #define HAS_DISPLAY false
       #define DISPLAY EINK_BW
       #define HAS_BLUETOOTH false
       #define HAS_BLE true
