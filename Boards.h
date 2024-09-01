@@ -634,9 +634,9 @@
       #define EEPROM_SIZE 296
       #define EEPROM_OFFSET EEPROM_SIZE-EEPROM_RESERVED
       #define HAS_EEPROM false
-      //#define HAS_DISPLAY true
+      #define HAS_DISPLAY true
       #define DISPLAY EINK_BW
-      //#define HAS_BLE true
+      #define HAS_BLE true
       //#define HAS_CONSOLE false
       //#define HAS_PMU false
       //#define HAS_SD false
@@ -659,15 +659,15 @@
       const int8_t interface_pins[INTERFACE_COUNT][10] = { 
                   // SX1262
           {
-              42, // pin_ss
-              43, // pin_sclk
-              44, // pin_mosi
-              45, // pin_miso
-              46, // pin_busy
-              47, // pin_dio
-              38, // pin_reset
+              44, // pin_ss
+              47, // pin_sclk
+              45, // pin_mosi
+              46, // pin_miso
+              14, // pin_busy
+              13, // pin_dio
+              15, // pin_reset
               -1, // pin_txen
-              37, // pin_rxen
+              -1, // pin_rxen
               -1  // pin_tcxo_enable
           }
       };
