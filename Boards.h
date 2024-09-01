@@ -641,8 +641,8 @@
       #define DISPLAY EINK_BW
       #define HAS_BLE true
       #define HAS_CONSOLE false
-      //#define HAS_PMU true
-      //#define HAS_SD false
+      #define HAS_PMU true
+      #define HAS_SD false
       #define CONFIG_UART_BUFFER_SIZE 40000
       #define CONFIG_QUEUE_0_SIZE 6144
       #define CONFIG_QUEUE_MAX_LENGTH 200
@@ -659,15 +659,15 @@
               true, // DEFAULT_SPI
               true, // HAS_TCXO
               true  // DIO2_AS_RF_SWITCH
-          }
+          },
       };
       const int8_t interface_pins[INTERFACE_COUNT][10] = { 
                   // SX1262
           {
-              -1, // pin_ss
-              -1, // pin_sclk
-              44, // pin_mosi
-              45, // pin_miso
+              24, // pin_ss
+              19, // pin_sclk
+              22, // pin_mosi
+              23, // pin_miso
               17, // pin_busy
               20, // pin_dio
               25, // pin_reset
@@ -677,11 +677,11 @@
           }
       };
 
-      const int pin_disp_cs = PIN_QSPI_CS;
-      const int pin_disp_dc = PIN_QSPI_IO1;
-      const int pin_disp_reset = -1;
-      const int pin_disp_busy = PIN_QSPI_IO3;
-      const int pin_disp_en = PIN_QSPI_IO2;
+      const int pin_disp_cs = 30;
+      const int pin_disp_dc = 28;
+      const int pin_disp_reset = 2;
+      const int pin_disp_busy = 3;
+      const int pin_disp_en = 43;
 
       const int pin_led_rx = LED_BLUE;
       const int pin_led_tx = LED_RED;
