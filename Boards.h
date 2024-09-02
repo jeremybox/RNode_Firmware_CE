@@ -640,17 +640,16 @@
       #define HAS_DISPLAY true
       #define DISPLAY EINK_BW
       #define HAS_BLE true
-      #define HAS_CONSOLE false
       #define HAS_PMU true
-      #define HAS_SD false
       #define CONFIG_UART_BUFFER_SIZE 40000
       #define CONFIG_QUEUE_0_SIZE 6144
       #define CONFIG_QUEUE_MAX_LENGTH 200
       #define BLE_MANUFACTURER "LilyGO"
       #define BLE_MODEL "T-Echo"
-      #define INTERFACE_COUNT 1
+      #define INTERFACE_COUNT 2
       #define I2C_SDA 26
       #define I2C_SCL 27
+      #define CONFIG_QUEUE_1_SIZE 40000
       // first interface in list is the primary
       const uint8_t interfaces[INTERFACE_COUNT] = {SX126X};
       const bool interface_cfg[INTERFACE_COUNT][3] = { 
@@ -661,13 +660,29 @@
               true  // DIO2_AS_RF_SWITCH
           },
       };
+      //For testing, settting all pins to -1
       const int8_t interface_pins[INTERFACE_COUNT][10] = { 
                   // SX1262
           {
+              -1, // pin_ss
+              -1, // pin_sclk
+              -1, // pin_mosi
+              -1, // pin_miso
+              -1, // pin_busy
+              -1, // pin_dio
+              -1, // pin_reset
+              -1, // pin_txen
+              -1, // pin_rxen
+              -1  // pin_tcxo_enable
+          }
+      };
+      /*const int8_t interface_pins[INTERFACE_COUNT][10] = { 
+                  // SX1262
+          {
               24, // pin_ss
-              19, // pin_sclk
-              22, // pin_mosi
-              23, // pin_miso
+              46, // pin_sclk
+              44, // pin_mosi
+              45, // pin_miso
               17, // pin_busy
               20, // pin_dio
               25, // pin_reset
@@ -675,7 +690,7 @@
               -1, // pin_rxen
               -1  // pin_tcxo_enable
           }
-      };
+      };*/
 
       const int pin_disp_cs = 30;
       const int pin_disp_dc = 28;
