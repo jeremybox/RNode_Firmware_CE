@@ -631,33 +631,34 @@
   
   #elif MCU_VARIANT == MCU_NRF52
     #if BOARD_MODEL == BOARD_TECHO
-      #define GPS_BAUD_RATE 115200
-      #define PIN_GPS_TX 41
-      #define PIN_GPS_RX 40
+      //#define GPS_BAUD_RATE 115200
+      //#define PIN_GPS_TX 41
+      //#define PIN_GPS_RX 40
       #define EEPROM_SIZE 296
       #define EEPROM_OFFSET EEPROM_SIZE-EEPROM_RESERVED
       //#define HAS_EEPROM true
-      #define HAS_SD true
-      #define HAS_DISPLAY true
+      //#define HAS_SD true
+      //#define HAS_DISPLAY true
       //#define HAS_CONSOLE true
+      //#define HAS_TXCO true
       #define DISPLAY EINK_BW
-      #define HAS_BLE true
-      #define HAS_PMU true
+      //#define HAS_BLE true
+      //#define HAS_PMU true
       #define CONFIG_UART_BUFFER_SIZE 40000
       #define CONFIG_QUEUE_0_SIZE 6144
       #define CONFIG_QUEUE_MAX_LENGTH 200
       #define BLE_MANUFACTURER "LilyGO"
       #define BLE_MODEL "T-Echo"
       #define INTERFACE_COUNT 1
-      #define I2C_SDA 26
-      #define I2C_SCL 27
+      //#define I2C_SDA 26
+      //#define I2C_SCL 27
       #define CONFIG_QUEUE_1_SIZE 40000
       // first interface in list is the primary
       const uint8_t interfaces[INTERFACE_COUNT] = {SX126X};
       const bool interface_cfg[INTERFACE_COUNT][3] = { 
                   // SX1262
           {
-              true, // DEFAULT_SPI
+              false, // DEFAULT_SPI
               true, // HAS_TCXO
               true  // DIO2_AS_RF_SWITCH
           }
@@ -686,8 +687,8 @@
               20, // pin_dio
               25, // pin_reset
               -1, // pin_txen
-              12, // pin_rxen
-              16  // pin_tcxo_enable
+              -1, // pin_rxen
+              21  // pin_tcxo_enable
           }
       };
 
