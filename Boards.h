@@ -631,13 +631,15 @@
   
   #elif MCU_VARIANT == MCU_NRF52
     #if BOARD_MODEL == BOARD_TECHO
-      #define GPS_BAUD_RATE 9600
+      #define GPS_BAUD_RATE 115200
       #define PIN_GPS_TX 41
       #define PIN_GPS_RX 40
       #define EEPROM_SIZE 296
       #define EEPROM_OFFSET EEPROM_SIZE-EEPROM_RESERVED
       //#define HAS_EEPROM true
+      #define HAS_SD true
       #define HAS_DISPLAY true
+      //#define HAS_CONSOLE true
       #define DISPLAY EINK_BW
       #define HAS_BLE true
       #define HAS_PMU true
@@ -646,7 +648,7 @@
       #define CONFIG_QUEUE_MAX_LENGTH 200
       #define BLE_MANUFACTURER "LilyGO"
       #define BLE_MODEL "T-Echo"
-      #define INTERFACE_COUNT 2
+      #define INTERFACE_COUNT 1
       #define I2C_SDA 26
       #define I2C_SCL 27
       #define CONFIG_QUEUE_1_SIZE 40000
@@ -658,39 +660,36 @@
               true, // DEFAULT_SPI
               true, // HAS_TCXO
               true  // DIO2_AS_RF_SWITCH
-          },
-      };
-      //For testing, settting all pins to -1
-      const int8_t interface_pins[INTERFACE_COUNT][10] = { 
-                  // SX1262
-          {
-              -1, // pin_ss
-              -1, // pin_sclk
-              -1, // pin_mosi
-              -1, // pin_miso
-              -1, // pin_busy
-              -1, // pin_dio
-              -1, // pin_reset
-              -1, // pin_txen
-              -1, // pin_rxen
-              -1  // pin_tcxo_enable
           }
       };
-      /*const int8_t interface_pins[INTERFACE_COUNT][10] = { 
+      /*  Comment trying to line up / make sense of the constructor - remove from the 'real' commit:
+                C1,C2,0,1,2,3,6,5,4,8
+
+                obj = new sx126x(i, &interface_spi[i], interface_cfg[i][1],
+                interface_cfg[i][2], interface_pins[i][0], interface_pins[i][1],
+                interface_pins[i][2], interface_pins[i][3], interface_pins[i][6],
+                interface_pins[i][5], interface_pins[i][4], interface_pins[i][8]);
+
+                sx126x(uint8_t index, SPIClass* spi, bool tcxo, bool dio2_as_rf_switch, int ss, int sclk, int mosi, int miso, int reset, int
+          dio0, int busy, int rxen);
+
+      */
+      const int8_t interface_pins[INTERFACE_COUNT][10] = { 
                   // SX1262
-          {
-              24, // pin_ss
-              46, // pin_sclk
-              44, // pin_mosi
-              45, // pin_miso
+          {       // 0,1,2,3,6,5,4,8
+                  // ss,sclk,mosi,miso,reset,dio0,busy,rxen
+              24, // pin_ss 
+              19, // pin_sclk
+              22, // pin_mosi
+              23, // pin_miso
               17, // pin_busy
               20, // pin_dio
               25, // pin_reset
               -1, // pin_txen
-              -1, // pin_rxen
-              -1  // pin_tcxo_enable
+              12, // pin_rxen
+              16  // pin_tcxo_enable
           }
-      };*/
+      };
 
       const int pin_disp_cs = 30;
       const int pin_disp_dc = 28;
@@ -726,7 +725,7 @@
       const bool interface_cfg[INTERFACE_COUNT][3] = { 
                     // SX1262
           {
-              false, // DEFAULT_SPI
+              true, // DEFAULT_SPI
               true, // HAS_TCXO
               true  // DIO2_AS_RF_SWITCH
           }
@@ -734,16 +733,16 @@
       const int8_t interface_pins[INTERFACE_COUNT][10] = { 
                   // SX1262
           {
-              42, // pin_ss
-              43, // pin_sclk
-              44, // pin_mosi
-              45, // pin_miso
+              24, // pin_ss
+              46, // pin_sclk
+              22, // pin_mosi
+              23, // pin_miso
               46, // pin_busy
               47, // pin_dio
               38, // pin_reset
               -1, // pin_txen
-              37, // pin_rxen
-              -1  // pin_tcxo_enable
+              -1, // pin_rxen
+              21  // pin_tcxo_enable
           }
       };
       #elif BOARD_VARIANT == MODEL_13 || BOARD_VARIANT == MODEL_14 || BOARD_VARIANT == MODEL_21
