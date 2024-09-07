@@ -122,6 +122,14 @@ void setup() {
     while (!Serial);
   #endif
 
+  #if BOARD_MODEL == BOARD_TECHO
+    Serial.write("Bringing pins 12 and 6 high for t-echo reasons");
+    pinMode(12, OUTPUT);
+    pinMode(6, OUTPUT);
+    digitalWrite(12, HIGH);
+    digitalWrite(6, HIGH);
+  #endif
+
   // Configure input and output pins
   #if HAS_INPUT
     input_init();
@@ -416,7 +424,7 @@ void ISR_VECT receive_callback(uint8_t index, int packet_size) {
 
 bool startRadio(RadioInterface* radio) {
   update_radio_lock(radio);
-  
+
   if (modems_installed && !console_active) {
     if (!radio->getRadioLock() && hw_ready) {
       if (!radio->begin()) {
@@ -1169,7 +1177,7 @@ void validate_status() {
 }
 
 void loop() {
-      packet_poll();
+    packet_poll();
 
     bool ready = false;
     for (int i = 0; i < INTERFACE_COUNT; i++) {

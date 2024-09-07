@@ -1355,6 +1355,8 @@ bool eeprom_model_valid() {
 	if (model == MODEL_A1 || model == MODEL_A5 || model == MODEL_A6) {
 	#elif BOARD_MODEL == BOARD_HMBRW
 	if (model == MODEL_FF || model == MODEL_FE) {
+	#elif BOARD_MODEL == BOARD_TECHO
+	if (model == PRODUCT_TECHO) {
 	#elif BOARD_MODEL == BOARD_TBEAM
 	if (model == MODEL_E4 || model == MODEL_E9 || model == MODEL_E3 || model == MODEL_E8) {
 	#elif BOARD_MODEL == BOARD_LORA32_V1_0
