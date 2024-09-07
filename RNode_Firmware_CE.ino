@@ -122,14 +122,6 @@ void setup() {
     while (!Serial);
   #endif
 
-  #if BOARD_MODEL == BOARD_TECHO
-    Serial.write("Bringing pins 12 and 6 high for t-echo reasons");
-    pinMode(12, OUTPUT);
-    pinMode(6, OUTPUT);
-    digitalWrite(12, HIGH);
-    digitalWrite(6, HIGH);
-  #endif
-
   // Configure input and output pins
   #if HAS_INPUT
     input_init();
