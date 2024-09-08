@@ -204,7 +204,8 @@ upload-rak4631:
 upload-techo:
 	arduino-cli upload -p /dev/ttyACM0 --fqbn adafruit:nrf52:pca10056
 	unzip -o build/adafruit.nrf52.pca10056/RNode_Firmware_CE.ino.zip -d build/adafruit.nrf52.pca10056
-	rnodeconf /dev/ttyACM0 --firmware-hash $$(sha256sum ./build/adafruit.nrf52.pca10056/RNode_Firmware_CE.ino.bin | grep -o '^\S*')
+	../Reticulum/RNS/Utilities/rnodeconf.py /dev/ttyACM0 --firmware-hash $$(sha256sum ./build/adafruit.nrf52.pca10056/RNode_Firmware_CE.ino.bin | grep -o '^\S*')
+	#rnodeconf.py /dev/ttyACM0 --firmware-hash $$(sha256sum ./build/adafruit.nrf52.pca10056/RNode_Firmware_CE.ino.bin | grep -o '^\S*')
 
 release: release-all
 

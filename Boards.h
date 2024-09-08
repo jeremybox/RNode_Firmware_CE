@@ -638,12 +638,12 @@
       #define EEPROM_OFFSET EEPROM_SIZE-EEPROM_RESERVED
       //#define HAS_EEPROM true
       //#define HAS_SD true
-      //#define HAS_DISPLAY true
+      #define HAS_DISPLAY true
       //#define HAS_CONSOLE true
       //#define HAS_TXCO true
       #define DISPLAY EINK_BW
-      //#define HAS_BLE true
-      //#define HAS_PMU true
+      #define HAS_BLE true
+      #define HAS_PMU true
       #define CONFIG_UART_BUFFER_SIZE 40000
       #define CONFIG_QUEUE_0_SIZE 6144
       #define CONFIG_QUEUE_MAX_LENGTH 200
@@ -663,22 +663,10 @@
               true  // DIO2_AS_RF_SWITCH
           }
       };
-      /*  Comment trying to line up / make sense of the constructor - remove from the 'real' commit:
-                C1,C2,0,1,2,3,6,5,4,8
 
-                obj = new sx126x(i, &interface_spi[i], interface_cfg[i][1],
-                interface_cfg[i][2], interface_pins[i][0], interface_pins[i][1],
-                interface_pins[i][2], interface_pins[i][3], interface_pins[i][6],
-                interface_pins[i][5], interface_pins[i][4], interface_pins[i][8]);
-
-                sx126x(uint8_t index, SPIClass* spi, bool tcxo, bool dio2_as_rf_switch, int ss, int sclk, int mosi, int miso, int reset, int
-          dio0, int busy, int rxen);
-
-      */
       const int8_t interface_pins[INTERFACE_COUNT][10] = { 
                   // SX1262
-          {       // 0,1,2,3,6,5,4,8
-                  // ss,sclk,mosi,miso,reset,dio0,busy,rxen
+          {
               24, // pin_ss 
               19, // pin_sclk
               22, // pin_mosi

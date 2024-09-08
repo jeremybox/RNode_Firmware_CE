@@ -19,7 +19,7 @@
     #include "esp_bt_main.h"
     #include "esp_bt_device.h"
     BluetoothSerial SerialBT;
-  #elif HAS_BLE == true
+  #elif HAS_BLE
     #include "esp_bt_main.h"
     #include "esp_bt_device.h"
     // TODO: Remove
@@ -155,7 +155,7 @@ char bt_devname[11];
       }
     }
 
-  #elif HAS_BLE == true
+  #elif HAS_BLE
     void bt_stop() {
       if (bt_state != BT_STATE_OFF) {
         bt_allow_pairing = false;

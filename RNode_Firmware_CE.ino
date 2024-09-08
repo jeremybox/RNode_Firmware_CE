@@ -285,7 +285,7 @@ void setup() {
     update_display();
   #endif
 
-    #if HAS_PMU == true
+    #if HAS_PMU
       pmu_ready = init_pmu();
     #endif
 
@@ -926,7 +926,7 @@ void serialCallback(uint8_t sbyte) {
     } else if (command == CMD_CONF_DELETE) {
       eeprom_conf_delete();
     } else if (command == CMD_FB_EXT) {
-      #if HAS_DISPLAY == true
+      #if HAS_DISPLAY
         if (sbyte == 0xFF) {
           kiss_indicate_fbstate();
         } else if (sbyte == 0x00) {

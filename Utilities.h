@@ -41,16 +41,16 @@
 uint8_t eeprom_read(uint32_t mapped_addr);
 #endif
 
-#if HAS_DISPLAY == true
+#if HAS_DISPLAY
   #include "Display.h"
 #endif
 
-#if HAS_BLUETOOTH == true || HAS_BLE == true
+#if HAS_BLUETOOTH || HAS_BLE
 	void kiss_indicate_btpin();
   #include "Bluetooth.h"
 #endif
 
-#if HAS_PMU == true
+#if HAS_PMU
   #include "Power.h"
 #endif
 
@@ -578,7 +578,7 @@ void sort_interfaces() {
 }
 
 void serial_write(uint8_t byte) {
-	#if HAS_BLUETOOTH || HAS_BLE == true
+	#if HAS_BLUETOOTH || HAS_BLE
 		if (bt_state != BT_STATE_CONNECTED) {
 			Serial.write(byte);
 		} else {
@@ -788,7 +788,7 @@ void kiss_indicate_battery() {
 }
 
 void kiss_indicate_btpin() {
-	#if HAS_BLUETOOTH || HAS_BLE == true
+	#if HAS_BLUETOOTH || HAS_BLE
 		serial_write(FEND);
 		serial_write(CMD_BT_PIN);
 		escaped_serial_write(bt_ssp_pin>>24);
