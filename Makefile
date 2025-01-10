@@ -73,7 +73,7 @@ firmware-tbeam_sx126x:
 	arduino-cli compile --fqbn esp32:esp32:t-beam $(COMMON_BUILD_FLAGS) --build-property "compiler.cpp.extra_flags=\"-DBOARD_MODEL=0x33\" \"-DMODEM=0x03\""
 
 firmware-t1000e:
-	arduino-cli compile --fqbn adafruit:nrf52:pca10056 $(COMMON_BUILD_FLAGS) --build-property "compiler.cpp.extra_flags=\"-DBOARD_MODEL=0x45\" \"-DBOARD_VARIANT=0x16\""
+	arduino-cli compile --fqbn Seeeduino:nrf52:xiaonRF52840 $(COMMON_BUILD_FLAGS) --build-property "compiler.cpp.extra_flags=\"-DBOARD_MODEL=0x45\" \"-DBOARD_VARIANT=0x16\""
 
 firmware-techo: firmware-techo4 firmware-techo9
 
