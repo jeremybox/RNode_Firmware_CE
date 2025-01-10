@@ -149,7 +149,7 @@ upload-tbeam:
 
 upload-t1000e:
 	arduino-cli upload -p $(or $(port), /dev/ttyACM0) --fqbn adafruit:nrf52:pca10056
-	unzip -o build/adafruit.nrf52.pca10056/RNode_Firmware_CE.ino.zip -d build/adafruit.nrf52.pca10056
+	unzip -o build/Seeeduino.nrf52.xiaonRD5280/RNode_Firmware_CE.ino.zip -d build/adafruit.nrf52.pca10056
 	rnodeconf $(or $(port), /dev/ttyACM0) --firmware-hash $$(sha256sum ./build/adafruit.nrf52.pca10056/RNode_Firmware_CE.ino.bin | grep -o '^\S*')
 
 upload-techo:
