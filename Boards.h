@@ -41,6 +41,7 @@
   #define BOARD_T3S3          0x42
   #define BOARD_TECHO         0x43
   #define BOARD_E22_ESP32     0x44
+  #define BOARD_T1000E        0x45
   #define BOARD_GENERIC_NRF52 0x50
   #define BOARD_RAK4631       0x51
 
@@ -735,6 +736,52 @@
       #define HAS_BACKLIGHT true
       const int pin_btn_usr1 = 42;
       const int pin_backlight = 43;
+
+      const int pin_led_rx = LED_BLUE;
+      const int pin_led_tx = LED_RED;
+    #elif BOARD_MODEL == BOARD_T1000E
+      #define VALIDATE_FIRMWARE false
+      #define HAS_INPUT true
+      #define EEPROM_SIZE 296
+      #define EEPROM_OFFSET EEPROM_SIZE-EEPROM_RESERVED
+      #define INTERFACE_SPI
+      //#define HAS_CONSOLE true
+      //#define HAS_TXCO true
+      //#define HAS_BLE true
+      //#define HAS_PMU true
+      #define CONFIG_UART_BUFFER_SIZE 40000
+      #define CONFIG_QUEUE_0_SIZE 6144
+      #define CONFIG_QUEUE_MAX_LENGTH 200
+      #define INTERFACE_COUNT 1
+      #define CONFIG_QUEUE_1_SIZE 40000
+      // first interface in list is the primary
+      const uint8_t interfaces[INTERFACE_COUNT] = {SX126X};
+      const bool interface_cfg[INTERFACE_COUNT][3] = { 
+                  // SX1262
+          {
+              true, // DEFAULT_SPI
+              false, // HAS_TCXO
+              false  // DIO2_AS_RF_SWITCH
+          }
+      };
+
+      const int8_t interface_pins[INTERFACE_COUNT][10] = { 
+                  // SX1262
+          {
+              12, // pin_ss 
+              11, // pin_sclk
+              41, // pin_mosi
+              40, // pin_miso
+              7, // pin_busy
+              33, // pin_dio
+              42, // pin_reset
+              -1, // pin_txen
+              -1, // pin_rxen
+              -1  // pin_tcxo_enable
+          }
+      };
+
+      const int pin_btn_usr1 = 0;
 
       const int pin_led_rx = LED_BLUE;
       const int pin_led_tx = LED_RED;

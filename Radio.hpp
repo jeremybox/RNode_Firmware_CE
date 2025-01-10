@@ -42,7 +42,9 @@
 #define PHY_HEADER_LORA_SYMBOLS 8
 
 #define _e 2.71828183
+#ifndef _S
 #define _S 10.0
+#endif
 
 // Status flags
 const uint8_t SIG_DETECT = 0x01;

@@ -10,6 +10,7 @@ Firstly, figure out which MCU platform your supported board is based on. The tab
 | RAK4631 | [Buy here](https://store.rakwireless.com/products/rak4631-lpwan-node?m=5&h=wisblock-core) | SX1262 | nRF52 |
 | LilyGO LoRa32 v1.0 | [Buy here](https://www.lilygo.cc/products/lora32-v1-0) | SX1276/8 | ESP32 |
 | LilyGO T-BEAM v1.1 | [Buy here](https://www.lilygo.cc/products/t-beam-v1-1-esp32-lora-module) | SX1276/8 | ESP32 |
+| LilyGO T-ECHO | [Buy here](https://www.lilygo.cc/products/t-echo) | SX1262/8 | nRF52 |
 | LilyGO LoRa32 v2.0 | No link | SX1276/8 | ESP32 | Discontinued? |
 | LilyGO LoRa32 v2.1 |  [Buy here](https://www.lilygo.cc/products/lora3) | SX1276/8 | ESP32 | With and without TCXO |
 | Heltec LoRa32 v2 | No link | SX1276/8 | ESP32 | Discontinued? |
