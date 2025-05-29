@@ -101,12 +101,12 @@
   #define BOARD_RAK4631       0x51
   #define MODEL_11            0x11 // RAK4631, 433 MHz
   #define MODEL_12            0x12 // RAK4631, 868 MHz
-  #define MODEL_13            0x13 // RAK4631, 433MHz with WisBlock SX1280 module (LIBSYS002)
-  #define MODEL_14            0x14 // RAK4631, 868/915 MHz with WisBlock SX1280 module (LIBSYS002)
+  #define MODEL_13            0x13 // RAK4631, 433MHz with WisBlock SX1280 module (LIBSYS002 rev 1.3)
+  #define MODEL_14            0x14 // RAK4631, 868/915 MHz with WisBlock SX1280 module (LIBSYS002 rev 1.3)
 
   #define PRODUCT_OPENCOM_XL  0x20 // openCom XL - sold by Liberated Embedded Systems
   #define BOARD_OPENCOM_XL    0x52
-  #define MODEL_21            0x21 // openCom XL, 868/915 MHz
+  #define MODEL_21            0x21 // openCom XL v1, 868/915 MHz
 
   #define BOARD_E22_ESP32     0x45 // Custom Ebyte E22 board design for meshtastic, source:
                                    // https://github.com/NanoVHF/Meshtastic-DIY/blob/main/Schematics/E-Byte_E22/Mesh_Ebyte_E22-XXXM30S.pdf
