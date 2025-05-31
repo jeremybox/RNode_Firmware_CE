@@ -64,11 +64,12 @@
   #define MODEL_DB            0xDB // LilyGO T-Beam Supreme, 433 MHz
   #define MODEL_DC            0xDC // LilyGO T-Beam Supreme, 868 MHz
 
-  #define PRODUCT_XIAO_ESP32S3  0xEB // Xiao ESP32S3 - sold by Seeed Studio
-  #define BOARD_XIAO_ESP32S3    0x3E
-  #define MODEL_DD            0xDD // Xiao ESP32S3, 868 MHz
+  #define PRODUCT_XIAO_S3     0xEB
+  #define BOARD_XIAO_S3       0x3E
+  #define MODEL_DE            0xDE // Xiao ESP32S3 with Wio-SX1262 module, 433 MHz
+  #define MODEL_DD            0xDD // Xiao ESP32S3 with Wio-SX1262 module, 868 MHz
 
-  #define PRODUCT_T32_10      0xB2 // T3 v1.0 - sold by LilyGO
+  #define PRODUCT_T32_10      0xB2
   #define BOARD_LORA32_V1_0   0x39
   #define MODEL_BA            0xBA // LilyGO T3 v1.0, 433 MHz
   #define MODEL_BB            0xBB // LilyGO T3 v1.0, 868 MHz
@@ -1030,7 +1031,7 @@
               -1  // pin_tcxo_enable
           }
       };
- #elif BOARD_MODEL == BOARD_XIAO_ESP32S3
+ #elif BOARD_MODEL == BOARD_XIAO_S3
       #define IS_ESP32S3 true
 
       #define HAS_DISPLAY true
@@ -1096,10 +1097,10 @@
       // shared with button input.
       #if HAS_NP == false
         #if defined(EXTERNAL_LEDS)
-          const int pin_led_rx = -1;
+          const int pin_led_rx = 48;
           const int pin_led_tx = 48; //47;
         #else
-          const int pin_led_rx = -1;
+          const int pin_led_rx = 48;
           const int pin_led_tx = 48; //47;
         #endif
       #endif

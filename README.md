@@ -102,7 +102,6 @@ The production of one particular RNode device is not an end, but the potential s
 
 This tree fits into the larger biome of Free & Open Communications Systems, which I hope that you - by using communications tools like RNode - will help grow and prosper.
 
-
 ## Getting Started Fast
 You can download and flash the firmware to all the supported boards using [rnodeconf](https://github.com/markqvist/Reticulum). All firmware releases are handled and installed directly through the `rnodeconf` utility, which is included in the `rns` package. It can be installed via `pip`:
 
@@ -143,13 +142,13 @@ You can help support the continued development of open, free and private communi
   ```
   84FpY1QbxHcgdseePYNmhTHcrgMX4nFfBYtz2GKYToqHVVhJp8Eaw1Z1EedRnKD19b3B8NiLCGVxzKV17UMmmeEsCrPyA5w
   ```
-- Ethereum
-  ```
-  0xFDabC71AC4c0C78C95aDDDe3B4FA19d6273c5E73
-  ```
 - Bitcoin
   ```
-  35G9uWVzrpJJibzUwpNUQGQNFzLirhrYAH
+  bc1p4a6axuvl7n9hpapfj8sv5reqj8kz6uxa67d5en70vzrttj0fmcusgxsfk5
+  ```
+- Ethereum
+  ```
+  0xae89F3B94fC4AD6563F0864a55F9a697a90261ff
   ```
 - Ko-Fi: https://ko-fi.com/markqvist
 

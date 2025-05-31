@@ -144,14 +144,24 @@ void setup() {
   #endif
 
   // Seed the PRNG for CSMA R-value selection
-  # if MCU_VARIANT == MCU_ESP32
+  #if MCU_VARIANT == MCU_ESP32
     // On ESP32, get the seed value from the
     // hardware RNG
-    int seed_val = (int)esp_random();
+    unsigned long seed_val = (unsigned long)esp_random();
+  #elif MCU_VARIANT == MCU_NRF52
+    // On nRF, get the seed value from the
+    // hardware RNG
+    unsigned long seed_val = get_rng_seed();
   #else
     // Otherwise, get a pseudo-random seed
     // value from an unconnected analog pin
-    int seed_val = analogRead(0);
+    //
+    // CAUTION! If you are implementing the
+    // firmware on a platform that does not
+    // have a hardware RNG, you MUST take
+    // care to get a seed value with enough
+    // entropy at each device reset!
+    unsigned long seed_val = analogRead(0);
   #endif
   randomSeed(seed_val);
 
@@ -163,6 +173,10 @@ void setup() {
 
   #if HAS_NP
     led_init();
+  #endif
+
+  #if MCU_VARIANT == MCU_NRF52 && HAS_NP == true
+    boot_seq();
   #endif
 
   #if BOARD_MODEL != BOARD_RAK4631 && BOARD_MODEL != BOARD_HELTEC_T114 && BOARD_MODEL != BOARD_TECHO && BOARD_MODEL != BOARD_T3S3 && BOARD_MODEL != BOARD_TBEAM_S_V1 && BOARD_MODEL != BOARD_OPENCOM_XL
@@ -269,17 +283,17 @@ void setup() {
           {
               sx128x* obj;
               // if default spi enabled
-              if (interface_cfg[i][0]) {
-            obj = new sx128x(i, &SPI, interface_cfg[i][1],
-            interface_pins[i][0], interface_pins[i][1], interface_pins[i][2],
-            interface_pins[i][3], interface_pins[i][6], interface_pins[i][5],
-            interface_pins[i][4], interface_pins[i][8], interface_pins[i][7]);
+            if (interface_cfg[i][0]) {
+                obj = new sx128x(i, &SPI, interface_cfg[i][1],
+                interface_pins[i][0], interface_pins[i][1], interface_pins[i][2],
+                interface_pins[i][3], interface_pins[i][6], interface_pins[i][5],
+                interface_pins[i][4], interface_pins[i][8], interface_pins[i][7]);
             }
             else {
-            obj = new sx128x(i, &interface_spi[i], interface_cfg[i][1],
-            interface_pins[i][0], interface_pins[i][1], interface_pins[i][2],
-            interface_pins[i][3], interface_pins[i][6], interface_pins[i][5],
-            interface_pins[i][4], interface_pins[i][8], interface_pins[i][7]);
+                obj = new sx128x(i, &interface_spi[i], interface_cfg[i][1],
+                interface_pins[i][0], interface_pins[i][1], interface_pins[i][2],
+                interface_pins[i][3], interface_pins[i][6], interface_pins[i][5],
+                interface_pins[i][4], interface_pins[i][8], interface_pins[i][7]);
             }
             interface_obj[i] = obj;
             interface_obj_sorted[i] = obj;
@@ -1225,6 +1239,10 @@ void serial_callback(uint8_t sbyte) {
           }
         }
       #endif
+    } else if (command == CMD_BT_UNPAIR) {
+      #if HAS_BLE
+        if (sbyte == 0x01) { bt_debond_all(); }
+      #endif
     } else if (command == CMD_DISP_INT) {
       #if HAS_DISPLAY
         if (sbyte == FESC) {
@@ -1622,8 +1640,11 @@ void process_serial() {
 
 void sleep_now() {
   #if HAS_SLEEP == true
+    for (int i = 0; i < INTERFACE_COUNT; i++) {
+        stopRadio(interface_obj[i]); // TODO: Check this on all platforms
+    }
     #if PLATFORM == PLATFORM_ESP32
-      #if BOARD_MODEL == BOARD_T3S3 || BOARD_MODEL == BOARD_XIAO_ESP32C3
+      #if BOARD_MODEL == BOARD_T3S3 || BOARD_MODEL == BOARD_XIAO_S3
         display_intensity = 0;
         update_display(true);
       #endif
