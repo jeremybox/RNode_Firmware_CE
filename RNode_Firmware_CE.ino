@@ -375,7 +375,7 @@ void setup() {
       // just run the serial poll loop instead.
       display_add_callback(process_serial);
     #elif DISPLAY == EINK_BW || DISPLAY == EINK_3C
-      display_add_callback(work_while_waiting);
+      display_add_callback(process_serial); // todo: get this working with work_while_waiting again
     #endif
 
     display_unblank();
