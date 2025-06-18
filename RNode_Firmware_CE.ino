@@ -589,6 +589,12 @@ void ISR_VECT receive_callback(uint8_t index, int packet_size) {
     ready = true;
   }
 
+  #if MCU_VARIANT == MCU_NRF52
+  // Temporary fix for permanent preamble detected bug
+  // TODO: figure out how to prevent the timing issue which causes the IRQ to never be cleared
+  interface_obj[0]->getPacketValidity();
+  #endif
+
   if (ready) {
       queue_packet(selected_radio, index);
   }
